@@ -5,101 +5,118 @@
 <title>ペットホテル わんにゃんステイ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{margin:0;font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#333}
-header{background:#ffb703;color:#fff;padding:40px 20px;text-align:center}
+body{margin:0;font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#333;scroll-behavior:smooth}
+header{background:#ffb703;color:#fff;padding:40px 20px;text-align:center;position:sticky;top:0;z-index:10}
 header h1{margin:0;font-size:2.2rem}
-header p{margin-top:10px;font-size:1.1rem}
-section{padding:60px 20px;max-width:1100px;margin:auto}
-section h2{text-align:center;margin-bottom:30px;font-size:1.8rem}
-.hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:20px}
+section{padding:60px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(30px);transition:all .6s}
+section.show{opacity:1;transform:translateY(0)}
+.hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:20px;transition:transform .5s}
+.hero-img:hover{transform:scale(1.05)}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:#fff;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);padding:25px;text-align:center}
+.card{background:#fff;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);padding:25px;text-align:center;transition:transform .3s}
+.card:hover{transform:translateY(-8px)}
 .card img{width:100%;height:160px;object-fit:cover;border-radius:14px}
 .price-table{width:100%;border-collapse:collapse;margin-top:20px}
 .price-table th,.price-table td{border:1px solid #ddd;padding:12px;text-align:center}
 .price-table th{background:#fef3c7}
-.cta{background:#f1f5f9;text-align:center;padding:50px 20px}
-.cta button{background:#ffb703;color:#fff;border:none;border-radius:30px;padding:14px 32px;font-size:1rem;cursor:pointer}
-.cta button:hover{opacity:.9}
-form{max-width:600px;margin:30px auto;text-align:left}
-form input,form textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:6px;border:1px solid #ccc}
-form button{width:100%;background:#ffb703;color:#fff;border:none;padding:12px;border-radius:30px;font-size:1rem}
-iframe{width:100%;height:320px;border:0;border-radius:16px}
-footer{background:#1f2937;color:#fff;text-align:center;padding:20px;font-size:.9rem}
+.cta{text-align:center;padding:50px}
+button{background:#ffb703;color:#fff;border:none;border-radius:30px;padding:12px 24px;cursor:pointer}
+form{max-width:600px;margin:30px auto}
+form input,form textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ccc}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.gallery img{width:100%;border-radius:10px;cursor:pointer}
+#modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center}
+#modal img{max-width:80%;border-radius:10px}
+footer{background:#1f2937;color:#fff;text-align:center;padding:20px}
 </style>
 </head>
 <body>
 
 <header>
   <h1>ペットホテル わんにゃんステイ</h1>
-  <p>大切な家族を、安心と愛情でお預かりします</p>
 </header>
 
 <section>
-  <!-- メインビジュアル（トップの大きな画像） -->
-  <!-- 差し替え用途：ホテルの外観 / スタッフと犬 / 店舗イメージ -->
-  <img class="hero-img" src="https://images.unsplash.com/photo-1517849845537-4d257902454a" alt="ペットホテル メイン画像">
+  <!-- メイン画像 -->
+  <img class="hero-img" src="https://images.unsplash.com/photo-1517849845537-4d257902454a">
 </section>
 
 <section>
-  <h2>当ホテルの特徴</h2>
+  <h2>特徴</h2>
   <div class="features">
-
-    <!-- 特徴①：施設・室内の清潔感が伝わる画像 -->
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e" alt="清潔な室内">
-      <h3>清潔で快適</h3>
-      <p>毎日清掃・消毒を行い、快適な環境を保ちます。</p>
+      <!-- 清潔な施設画像 -->
+      <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e">
+      <h3>清潔</h3>
     </div>
-
-    <!-- 特徴②：散歩・運動・遊びの様子の画像 -->
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1558944351-cdcb7eab2e63" alt="散歩する犬">
-      <h3>お散歩・遊び時間</h3>
-      <p>ワンちゃんには毎日しっかり運動時間を確保。</p>
+      <!-- 散歩画像 -->
+      <img src="https://images.unsplash.com/photo-1558944351-cdcb7eab2e63">
+      <h3>運動</h3>
     </div>
-
-    <!-- 特徴③：猫・静かな環境・キャットルームの画像 -->
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178" alt="猫専用スペース">
-      <h3>猫専用スペース</h3>
-      <p>猫ちゃんは静かで落ち着いた専用ルーム。</p>
+      <!-- 猫画像 -->
+      <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178">
+      <h3>猫専用</h3>
     </div>
-
   </div>
 </section>
 
 <section>
-  <h2>料金案内</h2>
-  <table class="price-table">
-    <tr><th>ペット種別</th><th>1泊</th><th>日帰り</th></tr>
-    <tr><td>小型犬</td><td>¥3,500</td><td>¥2,000</td></tr>
-    <tr><td>中型犬</td><td>¥4,500</td><td>¥2,500</td></tr>
-    <tr><td>猫</td><td>¥3,000</td><td>¥1,800</td></tr>
-  </table>
+  <h2>ギャラリー（クリックで拡大）</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d" onclick="openModal(this.src)">
+    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b" onclick="openModal(this.src)">
+    <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8" onclick="openModal(this.src)">
+  </div>
 </section>
 
 <section>
-  <h2>ご予約フォーム</h2>
-  <!-- 実運用時はバックエンド or フォームサービスと連携 -->
-  <form onsubmit="event.preventDefault(); alert('送信されました（デモ）');">
-    <input type="text" placeholder="お名前" required>
-    <input type="email" placeholder="メールアドレス" required>
-    <input type="text" placeholder="ペットの種類（犬・猫など）">
-    <textarea placeholder="ご要望・ご質問"></textarea>
-    <button type="submit">送信する</button>
+  <h2>予約</h2>
+  <form onsubmit="submitForm(event)">
+    <input id="name" placeholder="名前" required>
+    <input id="email" placeholder="メール" required>
+    <button>送信</button>
   </form>
 </section>
 
-<section>
-  <h2>アクセス</h2>
-  <!-- Googleマップ：店舗住所に差し替え -->
-  <iframe src="https://www.google.com/maps?q=東京駅&output=embed"></iframe>
-</section>
+<div id="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
 
 <footer>
-  <p>© 2026 ペットホテル わんにゃんステイ</p>
+  <p>© 2026</p>
 </footer>
+
+<script>
+// スクロールでフェードイン
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add('show');
+    }
+  })
+});
+
+// モーダル画像
+function openModal(src){
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('modalImg').src=src;
+}
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
+
+// フォーム処理
+function submitForm(e){
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  if(name.length<2){alert('名前短すぎ');return;}
+  alert('送信完了（デモ）');
+}
+</script>
 
 </body>
 </html>
